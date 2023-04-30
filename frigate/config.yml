@@ -4,7 +4,7 @@ mqtt:
   topic_prefix: frigate
   client_id: frigate
   user: "{FRIGATE_MQTT_USER}"
-  password: "{FRIGATE_MQTT_PASSWORD}"
+  password: "{FRIGATE_MQTT_PASSWORD}" # all user names and passwords are set in the compose file
   stats_interval: 300
 detectors:
   cpu1:
@@ -16,9 +16,9 @@ detectors:
 go2rtc:
   streams:
     front:
-      - rtsp://user:{FRIGATE_RTSP_PASSWORD}@<camera_IP>:554/live0  
+      - rtsp://{CAMERA_USER_NAME}:{CAMERA_RTSP_PASSWORD}@<camera_IP>:554/live0  
     back:
-      - rtsp://user:{FRIGATE_RTSP_PASSWORD}@<camera_IP>:554/live0
+      - rtsp://{CAMERA_USER_NAME}:{CAMERA_RTSP_PASSWORD}@<camera_IP>:554/live0
   webrtc:
     candidates:
       - <container_IP>:8555
@@ -27,10 +27,10 @@ cameras:
   back:
     ffmpeg:
       inputs:
-        - path: rtsp://user:{FRIGATE_RTSP_PASSWORD}@<camera_IP>:554/Streaming/Channels/102 # should be one of the camera sub-channels
+        - path: rtsp://{CAMERA_USER_NAME}:{CAMERA_RTSP_PASSWORD}@<camera_IP>:554/Streaming/Channels/102 # should be one of the camera sub-channels
           roles:
             - detect
-        - path: rtsp://user:{FRIGATE_RTSP_PASSWORD}@<camera_IP>:554/Streaming/Channels/101 # should be the main camera channel
+        - path: rtsp://{CAMERA_USER_NAME}:{CAMERA_RTSP_PASSWORD}@<camera_IP>:554/Streaming/Channels/101 # should be the main camera channel
           roles:
             - record
     detect: # depending on your camera resolution you may need to change these  
@@ -45,10 +45,10 @@ cameras:
   front:
     ffmpeg:
       inputs:
-        - path: rtsp://user:{FRIGATE_RTSP_PASSWORD}@192.168.50.4:554/Streaming/Channels/102
+        - path: rtsp://{CAMERA_USER_NAME}:{CAMERA_RTSP_PASSWORD}@192.168.50.4:554/Streaming/Channels/102
           roles:
             - detect
-        - path: rtsp://user:{FRIGATE_RTSP_PASSWORD}@192.168.50.4:554/Streaming/Channels/101
+        - path: rtsp://{CAMERA_USER_NAME}:{CAMERA_RTSP_PASSWORD}@192.168.50.4:554/Streaming/Channels/101
           roles:
             - record
     detect: # depending on your camera resolution you may need to change these  
