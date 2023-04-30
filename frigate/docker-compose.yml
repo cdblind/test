@@ -6,7 +6,7 @@ services:
     container_name: frigate
 # If useing Portainer stacks you need to add the Github repository to "Registeries" in Portainer to access the "blakeblackshear" repository it is nolonger on DockerHub.  
 # If using compose use a .env file to set the repo Github path? 0.12.0 was the latest release at the time.  
-    image: blakeblackshear/frigate:0.12.0
+    image:  ${DOCKER_ORG}  # blakeblackshear/frigate:0.12.0
     restart: always
     devices:
       - /dev/bus/usb:/dev/bus/usb
