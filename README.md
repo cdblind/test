@@ -2,9 +2,7 @@
 I am currently experimenting with docker and docker compose. These are my test docker compose files. If you use them use at your own risk.
 
 ## About me
-I am an accountant who early on in his career was tasked with looking after the IT and Network of the business I worked for as I had an interest in computers. I had enough experience to get myself into trouble. But over the years and through different business I worked in I was tasked with managing different IT related rolls.  
-
-So, I know enough to get into trouble and sometime enough to get out of it.  
+I am an accountant, early on in my career I was tasked with looking after the IT and Networking of the business I worked for as I had an interest in computing. I had enough experience to get myself into trouble. So, I know enough to get into trouble and sometimes enough to get out of it.  
 
 I have a love of technology and like learning new things. My trouble is it is hard to stay focused on one thing for to long.  
 
