@@ -1,0 +1,30 @@
+# if using Portainer stacks the "environment" variable value can be entered as a stack variable instead of in the compose file
+version: "3.9"
+
+services:
+  frigate:
+    container_name: frigate
+# If useing Portainer stacks you need to add the Github repository to "Registeries" in Portainer to access the "blakeblackshear" repository it is nolonger on DockerHub.  
+# If using compose use a .env file to set the repo Github path? 0.12.0 was the latest release at the time.  
+    image: blakeblackshear/frigate:0.12.0
+    restart: always
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+    volumes:
+# Replace <user> with your directory, either your home director if using Docker compose or if using Portainer stacks change the path to suit
+      - /etc/localtime:/etc/localtime
+      - /home/<user>/frigate/config.yml:/config/config.yml
+      - /home/<user>/frigate/media:/media/frigate
+      - type: tmpfs
+        target: /tmp/cache
+    ports:
+# To use go2rtc with "webrtc" you need to add port "8555" tcp and udp, if you are going to only use "mse" you don't need this port
+      - 5000:5000
+      - 1935:1935
+      - 8555:8555/tcp
+      - 8555:8555/udp
+    environment:
+# Insert your user name and password for mqtt and you rtsp camera feeds, i.e. I would setup a separate user on your camera just for the rtsp feed if you can
+      FRIGATE_RTSP_PASSWORD: "<insert>"
+      FRIGATE_MQTT_USER: "<insert>"
+      FRIGATE_MQTT_PASSWORD: "<insert>"
