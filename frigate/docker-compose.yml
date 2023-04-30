@@ -29,3 +29,4 @@ services:
       FRIGATE_MQTT_USER: "<insert>"
       FRIGATE_MQTT_PASSWORD: "<insert>"
       CAMERA_USER_NAME: "<insert>"
+# With my cameras I setup a separate user for frigate that is the same on each camera, otherwise you would need multiple username and password variables, which would be a nightmare.
