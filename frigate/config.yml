@@ -1,0 +1,94 @@
+mqtt:
+  host: <host_IP_address>  # if using homes assistant your home assistan IP
+  port: 1883
+  topic_prefix: frigate
+  client_id: frigate
+  user: "{FRIGATE_MQTT_USER}"
+  password: "{FRIGATE_MQTT_PASSWORD}"
+  stats_interval: 300
+detectors:
+  cpu1:
+    type: cpu
+    num_threads: 3
+  cpu2:
+    type: cpu
+    num_threads: 3
+go2rtc:
+  streams:
+    front:
+      - rtsp://user:{FRIGATE_RTSP_PASSWORD}@<camera_IP>:554/live0  
+    back:
+      - rtsp://user:{FRIGATE_RTSP_PASSWORD}@<camera_IP>:554/live0
+  webrtc:
+    candidates:
+      - <container_IP>:8555
+      - stun:8555
+cameras:
+  back:
+    ffmpeg:
+      inputs:
+        - path: rtsp://user:{FRIGATE_RTSP_PASSWORD}@<camera_IP>:554/Streaming/Channels/102
+          roles:
+            - detect
+        - path: rtsp://user:{FRIGATE_RTSP_PASSWORD}@<camera_IP>:554/Streaming/Channels/101
+          roles:
+            - record
+    detect:
+      width: 1280
+      height: 720
+      fps: 5      
+    motion:
+      mask:
+        - 354,21,412,21,640,85,640,0,186,0,188,38
+        - 56,137,247,720,0,720,0,184
+        - 730,0,1280,159,1280,68,1280,0      
+  front:
+    ffmpeg:
+      inputs:
+        - path: rtsp://user:{FRIGATE_RTSP_PASSWORD}@192.168.50.4:554/Streaming/Channels/102
+          roles:
+            - detect
+        - path: rtsp://user:{FRIGATE_RTSP_PASSWORD}@192.168.50.4:554/Streaming/Channels/101
+          roles:
+            - record
+    detect:
+      width: 1280
+      height: 772
+      fps: 5
+    motion:
+      mask:
+        - 476,90,728,89,1200,210,1200,0,0,0,0,137
+detect:
+  width: 1280
+  height: 720
+  fps: 5
+  enabled: True
+objects:
+  track:
+    - person
+rtmp:
+  enabled: False
+record:
+  enabled: True
+  retain:
+    days: 7
+    mode: all
+  events:
+    pre_capture: 30
+    post_capture: 15
+    retain:
+      default: 14
+      objects:
+        person: 14
+live:
+  height: 640
+  quality: 10
+birdseye:
+  enabled: True
+  mode: continuous
+snapshots:
+  enabled: True
+  timestamp: true
+  bounding_box: true
+  retain:
+    default: 14
