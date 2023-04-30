@@ -25,6 +25,7 @@ services:
       - 8555:8555/udp
     environment:
 # Insert your user name and password for mqtt and you rtsp camera feeds, i.e. I would setup a separate user on your camera just for the rtsp feed if you can
+# or include the as variables in the .env file.  
       CAMERA_RTSP_PASSWORD: "<insert>"
       FRIGATE_MQTT_USER: "<insert>"
       FRIGATE_MQTT_PASSWORD: "<insert>"
