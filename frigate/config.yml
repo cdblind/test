@@ -27,18 +27,18 @@ cameras:
   back:
     ffmpeg:
       inputs:
-        - path: rtsp://user:{FRIGATE_RTSP_PASSWORD}@<camera_IP>:554/Streaming/Channels/102
+        - path: rtsp://user:{FRIGATE_RTSP_PASSWORD}@<camera_IP>:554/Streaming/Channels/102 # should be one of the camera sub-channels
           roles:
             - detect
-        - path: rtsp://user:{FRIGATE_RTSP_PASSWORD}@<camera_IP>:554/Streaming/Channels/101
+        - path: rtsp://user:{FRIGATE_RTSP_PASSWORD}@<camera_IP>:554/Streaming/Channels/101 # should be the main camera channel
           roles:
             - record
-    detect:
+    detect: # depending on your camera resolution you may need to change these  
       width: 1280
       height: 720
       fps: 5      
     motion:
-      mask:
+      mask: # you need to change these masks to suit your camera and situation, probably best just to comment out the mask section for now.  
         - 354,21,412,21,640,85,640,0,186,0,188,38
         - 56,137,247,720,0,720,0,184
         - 730,0,1280,159,1280,68,1280,0      
@@ -51,12 +51,12 @@ cameras:
         - path: rtsp://user:{FRIGATE_RTSP_PASSWORD}@192.168.50.4:554/Streaming/Channels/101
           roles:
             - record
-    detect:
+    detect: # depending on your camera resolution you may need to change these  
       width: 1280
       height: 772
       fps: 5
     motion:
-      mask:
+      mask: # you need to change these masks to suit your camera and situation, probably best just to comment out the mask section for now.
         - 476,90,728,89,1200,210,1200,0,0,0,0,137
 detect:
   width: 1280
@@ -67,7 +67,7 @@ objects:
   track:
     - person
 rtmp:
-  enabled: False
+  enabled: False # according to the Github page this is drepreciated, best to leave as False. Which is good it never really worked for me, go2rtc works much better
 record:
   enabled: True
   retain:
@@ -82,11 +82,11 @@ record:
         person: 14
 live:
   height: 640
-  quality: 10
+  quality: 10 # I have this at 10 as my cameras are all 4k, lowering this number is supposed to be a better image, it did not make much difference for me, default is 8
 birdseye:
   enabled: True
   mode: continuous
-snapshots:
+snapshots: # if you want a snapshot of the detect image, otherwise comment out
   enabled: True
   timestamp: true
   bounding_box: true
