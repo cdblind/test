@@ -1,5 +1,5 @@
 # My test repo  
-I am currently experimenting with docker and docker compose. These are my test docker settup file: compose and config files for the apps I am playing with. If you use them use at your own risk.
+I am currently experimenting with docker and docker compose. These are my test docker settup files: compose and config files for the apps I am playing with. If you use them, use at your own risk.
 
 ## About me
 I am an accountant, early on in my career I was tasked with looking after the IT and Networking of the business I worked for as I had an interest in computing. I had enough experience to get myself into trouble, and sometimes enough to get out of it.  
