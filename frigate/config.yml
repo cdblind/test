@@ -1,5 +1,5 @@
 mqtt:
-  host: <host_IP_address>  # if using homes assistant your home assistan IP
+  host: <host_IP_address>  # if using home assistant your home assistan IP
   port: 1883
   topic_prefix: frigate
   client_id: frigate
