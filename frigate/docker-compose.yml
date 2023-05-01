@@ -12,9 +12,11 @@ services:
       - /dev/bus/usb:/dev/bus/usb
     volumes:
 # Replace <user> with your directory, either your home director if using Docker compose or if using Portainer stacks change the path to suit
+# make sure the database can be written to
       - /etc/localtime:/etc/localtime
       - /home/<user>/frigate/config.yml:/config/config.yml
       - /home/<user>/frigate/media:/media/frigate
+      - /home/<user>/frigate/db_frigate:/db_frigate
       - type: tmpfs
         target: /tmp/cache
     ports:
