@@ -6,6 +6,8 @@ mqtt:
   user: "{FRIGATE_MQTT_USER}"
   password: "{FRIGATE_MQTT_PASSWORD}" # all user names and passwords are set in the compose file
   stats_interval: 300
+database:
+  path: /home/<user>/frigate/db_frigate/frigate.db
 detectors:
   cpu1:
     type: cpu
